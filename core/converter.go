@@ -2,6 +2,7 @@ package core
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -11,7 +12,7 @@ import (
 
 type FontMap struct {
 	FontName string
-	FileName string
+	File     io.Reader
 }
 
 // Converter is a bridge to third-party gopdf.
@@ -129,9 +130,9 @@ func (convert *Converter) Execute() {
 // add fonts
 func (convert *Converter) AddFont() {
 	for _, font := range convert.fonts {
-		err := convert.pdf.AddTTFFont(font.FontName, font.FileName)
+		err := convert.pdf.AddTTFFontByReader(font.FontName, font.File)
 		if err != nil {
-			panic("font file:" + font.FileName + " not found")
+			panic("load font:" + font.FontName + " error" + err.Error())
 		}
 	}
 }
@@ -506,7 +507,6 @@ func (convert *Converter) InternalLinkLink(line string, elements []string) {
 	convert.pdf.SetX(parseFloatPanic(elements[1], line) + parseFloatPanic(elements[3], line))
 	convert.pdf.SetY(parseFloatPanic(elements[2], line))
 }
-
 
 func (convert *Converter) Margin(line string, eles []string) {
 	checkLength(line, eles, 3)
