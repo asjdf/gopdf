@@ -4,8 +4,8 @@ import (
 	"math"
 	"strings"
 
-	"github.com/tiechui1994/gopdf/core"
-	"github.com/tiechui1994/gopdf/util"
+	"github.com/asjdf/gopdf/core"
+	"github.com/asjdf/gopdf/util"
 )
 
 const (

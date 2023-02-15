@@ -1,13 +1,13 @@
 package example
 
 import (
-	"github.com/tiechui1994/gopdf/core"
-	"github.com/tiechui1994/gopdf"
-	"time"
-	"math/rand"
 	"fmt"
+	"github.com/asjdf/gopdf"
+	"github.com/asjdf/gopdf/core"
+	"math/rand"
 	"strings"
 	"testing"
+	"time"
 )
 
 var (

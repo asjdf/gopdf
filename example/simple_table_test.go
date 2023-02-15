@@ -2,8 +2,8 @@ package example
 
 import (
 	"fmt"
-	"github.com/tiechui1994/gopdf"
-	"github.com/tiechui1994/gopdf/core"
+	"github.com/asjdf/gopdf"
+	"github.com/asjdf/gopdf/core"
 	"testing"
 )
 
