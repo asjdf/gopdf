@@ -1,8 +1,8 @@
 package core
 
 import (
+	"bytes"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -12,7 +12,7 @@ import (
 
 type FontMap struct {
 	FontName string
-	File     io.Reader
+	File     []byte
 }
 
 // Converter is a bridge to third-party gopdf.
@@ -130,7 +130,7 @@ func (convert *Converter) Execute() {
 // add fonts
 func (convert *Converter) AddFont() {
 	for _, font := range convert.fonts {
-		err := convert.pdf.AddTTFFontByReader(font.FontName, font.File)
+		err := convert.pdf.AddTTFFontByReader(font.FontName, bytes.NewReader(font.File))
 		if err != nil {
 			panic("load font:" + font.FontName + " error" + err.Error())
 		}
